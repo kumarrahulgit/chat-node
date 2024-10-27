@@ -1,9 +1,14 @@
 import express from "express";
-import { adminTestEndpoint, createUser } from "../../modules/auth/auth.controller.js";
+import validator from "../../middleware/validator.js";
+import { createUser, updateUser } from "../../modules/user/user.controller.js";
+import { createUserSchema, updateUserSchema, } from "../../modules/user/user.schema.js";
+import { verifyUser } from "../../middleware/auth.js";
 
 const router = express();
 
-router.get("/test", adminTestEndpoint);
-router.post("/create-user", createUser);
+router.use(verifyUser);
+
+router.post("/create-user", validator(createUserSchema), createUser);
+router.post("/update-user", validator(updateUserSchema), updateUser);
 
 export default router;

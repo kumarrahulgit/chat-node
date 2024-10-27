@@ -1,13 +1,16 @@
 import app from "./app.js";
 import mongoDB from "./config/db.js";
+import { config } from "dotenv";
+
+config();
 
 const PORT = process.env.PORT || 3000;
 
-const server = app.listen(PORT, () => {
+const server = app.listen(PORT, async () => {
     try {
         console.log("Server is running...");
 
-        mongoDB.init();
+        await mongoDB.init();
 
         console.log("Connected to DB");
     } catch (ex) {
@@ -27,7 +30,8 @@ const exitHandler = () => {
     }
 };
 
-const unexpectedErrorHandler = () => {
+const unexpectedErrorHandler = (err) => {
+    console.log(err)
     exitHandler();
 };
 

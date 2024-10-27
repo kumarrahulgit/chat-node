@@ -2,12 +2,12 @@ import express from "express";
 
 import adminRoutes from "./admin/admin-route.js";
 import authRoutes from "./auth/authRoute.js";
-import { testEndpoint } from "../modules/auth/auth.controller.js";
+import userRoutes from "./user/userRoute.js";
 
 const router = express.Router();
 
 router.use('/auth', authRoutes);
-router.use('/test', testEndpoint);
 router.use('/admin', adminRoutes);
+router.use('/user', userRoutes);
 
 export default router;

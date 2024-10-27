@@ -1,9 +1,20 @@
 import app from "./app.js";
+import mongoDB from "./config/db.js";
 
 const PORT = process.env.PORT || 3000;
 
 const server = app.listen(PORT, () => {
-    console.log("Server is running...")
+    try {
+        console.log("Server is running...");
+
+        mongoDB.init();
+
+        console.log("Connected to DB");
+    } catch (ex) {
+        console.log(ex);
+
+        throw new Error("Error connecting to DB")
+    }
 });
 
 const exitHandler = () => {

@@ -3,11 +3,14 @@ import mongoose from "mongoose";
 const chatGroupSchema = new mongoose.Schema({
     name: String,
     owner: mongoose.SchemaTypes.ObjectId,
-    members: [mongoose.SchemaTypes.ObjectId]
+    members: {
+        type: [mongoose.SchemaTypes.ObjectId],
+        default: []
+    }
 }, {
     timestamps: true
 });
 
-const ChatGroup = mongoose.model("ChatGroup", chatGroupSchema, "chat-groups");
+const ChatGroup = mongoose.model("ChatGroup", chatGroupSchema, "chatGroups");
 
 export default ChatGroup;

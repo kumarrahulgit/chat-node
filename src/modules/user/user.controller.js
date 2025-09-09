@@ -35,7 +35,7 @@ export async function getUsers(_, res) {
         const users = await getUsersService();
 
         return res.status(httpStatus.SUCCESS).json({
-            message: 'User route',
+            message: 'Users',
             data: users
         });
     } catch (e) {

@@ -1,6 +1,7 @@
 import app from "./app.js";
 import mongoDB from "./config/db.js";
 import { config } from "dotenv";
+import "./ws.js";
 
 config();
 
